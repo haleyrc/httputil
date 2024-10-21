@@ -32,3 +32,15 @@ func DumpResponse(resp *http.Response) {
 	}
 	fmt.Fprintln(os.Stderr, string(bytes))
 }
+
+// RealIP returns the best guess at the originating IP address for an incoming
+// request.
+func RealIP(r *http.Request) string {
+	if ip := r.Header.Get("X-Real-Ip"); ip != "" {
+		return ip
+	}
+	if ip := r.Header.Get("X-Forwarded-For"); ip != "" {
+		return ip
+	}
+	return r.RemoteAddr
+}
