@@ -9,6 +9,10 @@ import (
 	"os"
 )
 
+// RequestID is the name of the header expected to contain a unique identifier
+// for incoming requests and their matching outgoing responses.
+const RequestID = "X-Request-ID"
+
 // // DumpRequest prints r to stderr including headers and the request body. The
 // request is reset after printing so it's safe to reuse. If the request can't
 // be dumped, an error is emitted to stderr instead.
